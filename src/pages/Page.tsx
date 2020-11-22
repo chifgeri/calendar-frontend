@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, AppBarProps, Toolbar, Typography } from "@material-ui/core";
+
+export type PageProps = AppBarProps & {
+  title: string;
+};
 
 const PageContainer = styled.div`
   display: flex;
@@ -13,12 +17,12 @@ const MainContent = styled.div`
   flex-grow: 1;
 `;
 
-const Page: React.FC = ({ children }) => {
+const Page: React.FC<PageProps> = ({ children, title, ...rest }) => {
   return (
     <PageContainer>
-      <AppBar position="static">
+      <AppBar position="static" {...rest}>
         <Toolbar>
-          <Typography variant="h6">News</Typography>
+          <Typography variant="h6">{title}</Typography>
         </Toolbar>
       </AppBar>
       <MainContent>{children}</MainContent>
