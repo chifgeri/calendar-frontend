@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Switch } from "react-router";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Page from "./pages/Page";
 
 interface Props {}
@@ -7,9 +8,13 @@ interface Props {}
 const Routes = (props: Props) => {
   return (
     <Switch>
-      <Route path="/">
+      <ProtectedRoute path="/login">
+        <Page>Login</Page>
+      </ProtectedRoute>
+
+      <ProtectedRoute guard path="/">
         <Page>Asdasd</Page>
-      </Route>
+      </ProtectedRoute>
     </Switch>
   );
 };
